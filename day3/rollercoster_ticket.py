@@ -7,12 +7,18 @@ height = int(input("What is your height (in cm)?"))
 
 if height >= min_allowed_height:
     print("You can buy a ticket")
+    ticket_price = 0
     age = int(input("What is your age?"))
     if age < 12:
-        print("Ticket cost is 5$")
+        ticket_price = 5
     elif 12 <= age <= 18:
-        print("Ticket cost 7$")
+        ticket_price = 7
     else:
-        print("Ticket cost full price 12$")
+        ticket_price = 7
+    photo = bool(input("Do you want photo?"))
+    if photo:
+        ticket_price += 3
+    print(f"Ticket will cost {ticket_price}")
+
 else:
     print("Your height is not enough")
