@@ -12,4 +12,5 @@ def greet_with(name, location):
     print(f"Great to see you from {location}")
 
 
-greet_with("Joe", "Poland")
+greet_with(name="Joe", location="Poland")
+greet_with(location="USA", name="Paul")
