@@ -5,9 +5,10 @@ no_of_tries = 6
 word_list = ["aardvark", "baboon", "camel"]
 
 # TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
+word_to_guess = list(random.choice(word_list))
 
-word_to_guess = list(word_list[random.randint(0, len(word_list) - 1)])
 guessed_letters = []
+
 for l in word_to_guess:
     guessed_letters.append("_")
 
