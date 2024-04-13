@@ -6,7 +6,7 @@ text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
 
-def encrypt(text, shift):
+def crypt(text, shift):
     encrypted = ""
     for l in text:
         encrypted += get_new_letter(l, shift)
@@ -25,14 +25,7 @@ def get_new_letter(letter, shift_value):
     return alphabet[new_index]
 
 
-def decrypt(text, shift):
-    decrypted = ""
-    for l in text:
-        decrypted += get_new_letter(l, -1 * shift)
-    return decrypted
-
-
 if (direction == "encode"):
-    print(encrypt(text=text, shift=shift))
+    print(crypt(text=text, shift=shift))
 else:
-    print(decrypt(text=text, shift=shift))
+    print(crypt(text=text, shift=shift * -1))
