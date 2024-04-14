@@ -1,4 +1,6 @@
 def capitalizer(f_name, l_name):
+    """Take first and last name and capitalise them
+    return full name capitalized"""
     name = f_name.capitalize()
     last_name = l_name.capitalize()
     return f"{name} {last_name}"
