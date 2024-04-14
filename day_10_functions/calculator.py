@@ -1,6 +1,3 @@
-possible_operations = ["+", "-", "*", "/"]
-
-
 def add(a, b):
     return a + b
 
@@ -17,17 +14,17 @@ def divide(a, b):
     return a / b
 
 
+possible_operations = {
+    "+": add,
+    "-": substract,
+    "*": multiply,
+    "/": divide
+}
+
+
 def calculator(a, b, operation):
-    if operation == "+":
-        return add(a, b)
-    elif operation == "-":
-        return substract(a, b)
-    elif operation == "*":
-        return a * b
-    elif operation == "/":
-        return divide(a, b)
-    else:
-        print("Invalid operation")
+    function = possible_operations[operation]
+    return function(a, b)
 
 
 number_a = int(input("Give me first number"))
