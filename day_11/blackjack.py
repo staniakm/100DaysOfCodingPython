@@ -76,19 +76,18 @@ def check_overlap(total_cards):
 
 
 def reset_new_game(user_cards, computer_cards):
-    print("Preparing table...")
+    print("""############################ PREPARING TABLE ##################################""")
     draw_card(user_cards, 2)
     draw_card(computer_cards, 2)
 
 
 def start_game(new_game):
-    user_cards = []
-    computer_cards = []
-    reset_new_game(user_cards, computer_cards)
+
     while new_game:
-        print("""
-        ############################ START NEW GAME ##################################
-        """)
+        user_cards = []
+        computer_cards = []
+        reset_new_game(user_cards, computer_cards)
+        print("""############################ START NEW GAME ##################################""")
 
         if check_blackjack(user_cards, computer_cards):
             answer = input("Do you want to play again?")
@@ -111,6 +110,7 @@ def start_game(new_game):
             else:
 
                 while not check_blackjack(user_cards, computer_cards) and calculate_score(computer_cards) < 17:
+                    print("Computer draw another card")
                     draw_card(computer_cards, 1)
 
                 print(f"Computer cards: {computer_cards}")
@@ -121,7 +121,7 @@ def start_game(new_game):
 
             answer = input("Do you want to start again?")
             if answer == "yes":
-                start_game(True)
+                new_game = True
             else:
                 new_game = False
 
