@@ -1,11 +1,15 @@
-year = 2100
-if year % 4 == 0:
-    if year % 100 == 0:
-        if year % 400 == 0:
-            print("Leap")
+def is_leap(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                print("Leap")
+                return True
+            else:
+                print("Not leap")
+                return False
         else:
-            print("Not leap")
+            print("Leap")
+            return True
     else:
-        print("Leap")
-else:
-    print("Not leap")
+        print("Not leap")
+        return False
