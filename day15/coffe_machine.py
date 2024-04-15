@@ -27,7 +27,7 @@ MENU = {
 resources = {
     "water": 300,
     "milk": 200,
-    "coffee": 100,
+    "coffee": 100
 }
 
 COINS = [
@@ -36,3 +36,28 @@ COINS = [
     {"name": "dime", "value": 0.10},
     {"name": "quarter", "value": 0.25},
 ]
+
+
+def calculate_coins():
+    total_sum = 0.0
+    for entry in COINS:
+        total_sum += entry["value"]
+    return round(total_sum, 2)
+
+
+def print_report():
+    print(f"""
+    Water: {resources['water']}ml
+    Milk: {resources['milk']}ml
+    Coffee: {resources['coffee']}g
+    Money: ${calculate_coins()}
+    """)
+
+
+running = True
+while running:
+    answer = input("What would you like to do (report/coffe/off)?")
+    if answer == "off":
+        running = False
+    elif answer == "report":
+        print_report()
