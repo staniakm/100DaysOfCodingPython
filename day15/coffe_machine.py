@@ -38,6 +38,28 @@ COINS = [
 ]
 
 
+def check_resources(coffe):
+    required_ingredients = coffe['ingredients']
+    is_enough = True
+    for key in required_ingredients:
+        if required_ingredients[key] > resources[key]:
+            is_enough = False
+            print(f"Sorry. not enough {key}")
+
+    return is_enough
+
+
+def accept_coins_and_prepare_coffe():
+    coffee = input("What type of coffe do you want (espresso/latte/cappuccino)?")
+    selected_coffee = MENU[coffee]
+    if check_resources(selected_coffee):
+        print(f"Coffee wil cost {selected_coffee['cost']}")
+        print("How do you want to pay??")
+        payment = {}
+        for key in COINS:
+            coins = int(input())
+
+
 def calculate_coins():
     total_sum = 0.0
     for entry in COINS:
@@ -61,3 +83,7 @@ while running:
         running = False
     elif answer == "report":
         print_report()
+    elif answer == "coffee":
+        accept_coins_and_prepare_coffe()
+    else:
+        print("Unknown command")
