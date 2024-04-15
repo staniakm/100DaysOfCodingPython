@@ -30,12 +30,20 @@ resources = {
     "coffee": 100
 }
 
+total_money = 0.0
+
 COINS = [
     {"name": "penny", "value": 0.01},
     {"name": "nickel", "value": 0.05},
     {"name": "dime", "value": 0.10},
     {"name": "quarter", "value": 0.25},
 ]
+
+
+def decrease_resource(coffe):
+    ingredients = coffe['ingredients']
+    for key in ingredients:
+        resources[key] -= ingredients[key]
 
 
 def check_resources(coffe):
@@ -49,15 +57,41 @@ def check_resources(coffe):
     return is_enough
 
 
+def calculate_total_payed(payed):
+    total_payed = 0.0
+    for coin in COINS:
+        total_payed += coin['value'] * payed[coin['name']]
+    return total_payed
+
+
 def accept_coins_and_prepare_coffe():
+    global total_money
     coffee = input("What type of coffe do you want (espresso/latte/cappuccino)?")
     selected_coffee = MENU[coffee]
     if check_resources(selected_coffee):
-        print(f"Coffee wil cost {selected_coffee['cost']}")
+        cost = selected_coffee['cost']
+        print(f"Coffee wil cost {cost}")
         print("How do you want to pay??")
-        payment = {}
-        for key in COINS:
-            coins = int(input())
+        waiting_for_payment = True
+        while waiting_for_payment:
+            payment = {}
+            for elem in COINS:
+                coins = int(input(f"How many {elem['name']}"))
+                payment[elem['name']] = coins
+            total_money_payed = calculate_total_payed(payment)
+
+            if total_money_payed >= cost:
+                waiting_for_payment = False
+                print(f"Start to prepare {coffee}")
+                total_money += cost
+                decrease_resource(selected_coffee)
+                if total_money_payed > cost:
+                    print(f"Here is your change {round(total_money_payed - cost, 2)}")
+                print_report()
+                print("Here is your coffe")
+            else:
+                waiting_for_payment = False
+                print("Not enough money, returning money")
 
 
 def calculate_coins():
@@ -72,7 +106,7 @@ def print_report():
     Water: {resources['water']}ml
     Milk: {resources['milk']}ml
     Coffee: {resources['coffee']}g
-    Money: ${calculate_coins()}
+    Money: ${total_money}
     """)
 
 
