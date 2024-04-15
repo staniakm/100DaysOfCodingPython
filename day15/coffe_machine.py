@@ -40,6 +40,14 @@ COINS = [
 ]
 
 
+def print_menu():
+    for key in MENU:
+        coffee = MENU[key]
+        print(f"""{key}: cost: ${coffee['cost']}
+        ingredients: {coffee['ingredients']}
+""")
+
+
 def decrease_resource(coffe):
     ingredients = coffe['ingredients']
     for key in ingredients:
@@ -112,12 +120,15 @@ def print_report():
 
 running = True
 while running:
-    answer = input("What would you like to do (report/coffe/off)?")
+    answer = input("What would you like to do (menu/coffe/report/off)?")
+
     if answer == "off":
         running = False
     elif answer == "report":
         print_report()
     elif answer == "coffee":
         accept_coins_and_prepare_coffe()
+    elif answer == "menu":
+        print_menu()
     else:
         print("Unknown command")
