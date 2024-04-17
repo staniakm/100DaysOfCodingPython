@@ -1,10 +1,12 @@
-from question_model import Question
-from data import question_data
+from day_17.quiz_brain import QuizBrain
 
-bank = []
+quiz = QuizBrain()
 
-for d in question_data:
-    bank.append(Question(d['text'], bool(d['answer'])))
-
-
-print(bank)
+playing = True
+while playing:
+    a_continue = input("Do you want to continue?")
+    if a_continue == "no":
+        playing = False
+    else:
+        quiz.next_question()
+        quiz.answer_question(input("Your answer:(True/False)"))
