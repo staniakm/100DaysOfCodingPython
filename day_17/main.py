@@ -10,4 +10,5 @@ while playing:
     else:
         if quiz.next_question():
             quiz.answer_question(input("Your answer:(True/False)"))
-
+        else:
+            playing = False
