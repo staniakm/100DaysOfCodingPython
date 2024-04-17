@@ -8,5 +8,6 @@ while playing:
     if a_continue == "no":
         playing = False
     else:
-        quiz.next_question()
-        quiz.answer_question(input("Your answer:(True/False)"))
+        if quiz.next_question():
+            quiz.answer_question(input("Your answer:(True/False)"))
+

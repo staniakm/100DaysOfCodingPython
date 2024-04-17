@@ -12,8 +12,13 @@ class QuizBrain:
             self.question_list.append(Question(d['text'], d['answer']))
 
     def next_question(self):
-        question = self.question_list[self.question_number]
-        print(question.question)
+        if self.question_number < len(self.question_list):
+            question = self.question_list[self.question_number]
+            print(question.question)
+            return True
+        else:
+            print("No more questions")
+            print(f"Points {self.points}/{self.question_number}")
 
     def answer_question(self, answer):
         question = self.question_list[self.question_number]
